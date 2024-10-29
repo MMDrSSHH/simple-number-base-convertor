@@ -61,7 +61,7 @@ const convertBase = () => {
 
             <div v-if="showOutput" class="w-full border-t-[0.2px] border-gray-400 my-6"></div>
 
-            <div v-if="showOutput" class="flex gap-4 justify-center items-center">
+            <div v-if="showOutput" class="flex flex-col lg:flex-row gap-4 justify-center items-center">
                 <span class="text-xl">({{ inputRes }})<sub>{{ inputBaseRes }}</sub></span>
                 <span class="text-gray-600">Converted to:</span>
                 <span class="text-xl">({{ output }})<sub>{{ outputBaseRes }}</sub></span>
