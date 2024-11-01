@@ -1,5 +1,6 @@
 <script setup>
 import { baseFromAtoB } from '@/utils/base-convert';
+import { toEnglishDigits } from '@/utils/persian-digit-to-english';
 import { ref } from 'vue';
 
 const input = ref("");
@@ -16,7 +17,7 @@ const outputBaseRes = ref(null);
 // console.log(baseFromAtoB("10000", 2, 16));
 const convertBase = () => {
     output.value = baseFromAtoB(input.value, inputBase.value, outputBase.value);
-    inputRes.value = input.value;
+    inputRes.value = toEnglishDigits(input.value);
     inputBaseRes.value = inputBase.value;
     outputBaseRes.value = outputBase.value;
     showOutput.value = true;
