@@ -39,7 +39,10 @@ const baseFromAToDec = (n, a) => {
     .split("")
     .reverse()
     .reduce((value, digit, index) => {
-      return value + digit * a ** index;
+      return (
+        value +
+        (digit < 9 ? digit : digitValues.get(digit.toLowerCase())) * a ** index
+      );
     }, 0);
 
   //   const fractionDec = fraction.split("").reduce((value, digit, index) => {
@@ -81,4 +84,13 @@ const digitSymbols = new Map([
   ["13", "d"],
   ["14", "e"],
   ["15", "f"],
+]);
+
+const digitValues = new Map([
+  ["a", "10"],
+  ["b", "11"],
+  ["c", "12"],
+  ["d", "13"],
+  ["e", "14"],
+  ["f", "15"],
 ]);
