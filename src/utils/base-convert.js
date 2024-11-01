@@ -1,3 +1,5 @@
+import { toEnglishDigits } from "./persian-digit-to-english";
+
 /**
  *
  * @param {String} n the number to be converted
@@ -7,16 +9,17 @@
  */
 export const baseFromAtoB = (n, a, b) => {
   try {
+    const number = toEnglishDigits(n);
     let result = "";
     if (+a === 10) {
       // if the inital base is decimal base then just convert to target base
-      result = baseFromDecToB(n, b);
+      result = baseFromDecToB(number, b);
     } else if (+b === 10) {
       // else if the target base is decimal then convert to the decimal right away
-      result = baseFromAToDec(n, a);
+      result = baseFromAToDec(number, a);
     } else {
       // if nor the target nor the initial are decimal, convert to decimal first then convert the result to the target base
-      const tempDecBase = baseFromAToDec(n, a);
+      const tempDecBase = baseFromAToDec(number, a);
       result = baseFromDecToB(tempDecBase, b);
     }
 
