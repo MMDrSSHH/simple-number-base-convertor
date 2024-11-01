@@ -48,12 +48,18 @@ const baseFromAToDec = (n, a) => {
       );
     }, 0);
 
-  //   const fractionDec = fraction.split("").reduce((value, digit, index) => {
-  //     return value + digit * a ** -(index + 1);
-  //   }, 0);
+  let result = integerDec.toString();
+  if (fraction) {
+    const fractionDec = fraction.split("").reduce((value, digit, index) => {
+      return value + digit * a ** -(index + 1);
+    }, 0);
+
+    result = result.concat(".", fractionDec.toString());
+  }
 
   //   return `${integerDec}.${fractionDec}`;
-  return `${integerDec}`;
+  //   return `${integerDec}`;
+  return result;
 };
 
 /**
@@ -64,6 +70,7 @@ const baseFromAToDec = (n, a) => {
  */
 const baseFromDecToB = (n, b) => {
   const [integer, fraction] = n.split(".");
+  const fractionNum = Number(`.${fraction}`);
 
   let tempInteger = +integer;
   let intResult = "";
@@ -76,7 +83,22 @@ const baseFromDecToB = (n, b) => {
     tempInteger = Math.floor(tempInteger / b);
   }
 
-  return intResult.split("").reverse().join("");
+  let result = intResult.split("").reverse().join("");
+
+  if (fractionNum) {
+    let tempFractionPart = fractionNum;
+    let fractionResult = "";
+    do {
+      const fractionMul = tempFractionPart * b;
+      tempFractionPart = fractionMul - Math.floor(fractionMul);
+      fractionResult = fractionResult.concat(Math.floor(fractionMul));
+    } while (tempFractionPart !== 0 && fractionResult.length <= 10);
+
+    result = result.concat(".", fractionResult);
+  }
+
+  //   return intResult.split("").reverse().join("");
+  return result;
 };
 
 // digit symbols representing 10 to 16 digits
