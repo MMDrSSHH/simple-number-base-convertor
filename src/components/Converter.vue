@@ -1,4 +1,5 @@
 <script setup>
+import { baseFromAtoB } from '@/utils/base-convert';
 import { ref } from 'vue';
 
 const input = ref("");
@@ -12,9 +13,9 @@ const output = ref("");
 const inputBaseRes = ref(null);
 const outputBaseRes = ref(null);
 
+// console.log(baseFromAtoB("10000", 2, 16));
 const convertBase = () => {
-    const baseTenNumber = Number.parseInt(input.value, inputBase.value);
-    output.value = baseTenNumber.toString(outputBase.value).toUpperCase();
+    output.value = baseFromAtoB(input.value, inputBase.value, outputBase.value);
     inputRes.value = input.value;
     inputBaseRes.value = inputBase.value;
     outputBaseRes.value = outputBase.value;
